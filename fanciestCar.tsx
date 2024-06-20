@@ -1,11 +1,10 @@
 const carTypes = ["UberX", "UberXL", "UberPlus", "UberBlack", "UberSUV"];
+const budget = 20;
 
 type getCarRequest = {
 	l: number;
 	fares: number[];
 };
-
-const budget = 10;
 
 function slowSolution({ l, fares }: getCarRequest): string | null {
 	const allowedCarTypes = carTypes.reduce((acc: string[], carType: string, index: number) => {
