@@ -11,9 +11,6 @@ type fareRequest = {
 	cost_per_minute: number[];
 	cost_per_mile: number[];
 };
-type fareResponse = {
-	fares: number[];
-};
 
 //(cost_per_minute) * (ride_time) + (cost_per_mile) * (ride_distance)
 function getFares({
@@ -21,21 +18,21 @@ function getFares({
 	ride_distance,
 	cost_per_minute,
 	cost_per_mile,
-}: fareRequest): fareResponse {
+}: fareRequest): number[] {
 	const fares = cost_per_minute.map(
 		(costMinute: number, index: number) =>
-			(costMinute * 100 * ride_time + cost_per_mile[index] * 100 * ride_distance) / 100
+			(costMinute * 100 * ride_time + cost_per_mile[index] * 100 * ride_distance) / 100 //100 is used to handle the JS binary floating point
 	);
-	return { fares };
+	return fares;
 }
 
-const a = performance.now();
+const aT = performance.now();
 const fares = getFares({
 	ride_time: 30,
 	ride_distance: 7,
 	cost_per_minute: [0.2, 0.35, 0.4, 0.45],
 	cost_per_mile: [1.1, 1.8, 2.3, 3.5],
 });
-const b = performance.now();
+const bT = performance.now();
 console.log(fares);
-console.log(`Execution time: ${b - a} ms.`);
+console.log(`Execution time: ${bT - aT} ms.`);

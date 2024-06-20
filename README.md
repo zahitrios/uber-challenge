@@ -3,4 +3,4 @@
 To run exercises:
 
 Fares challenge:
-`tsc index.tsx && node index.js`
+`tsc fares.tsx && node fares.js`
